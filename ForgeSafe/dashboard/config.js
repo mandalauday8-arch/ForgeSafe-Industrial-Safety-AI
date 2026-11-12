@@ -1,1 +1,1 @@
-window.FORGESAFE_API_URL = window.FORGESAFE_API_URL || 'http://127.0.0.1:5000';
+window.FORGESAFE_API_URL = 'https://forgesafe-industrial-safety-ai.onrender.com';
