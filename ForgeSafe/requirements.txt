@@ -1,0 +1,8 @@
+flask
+gunicorn
+catboost
+imageio-ffmpeg
+numpy
+opencv-python-headless
+pandas
+ultralytics

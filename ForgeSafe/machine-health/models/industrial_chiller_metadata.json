@@ -1,0 +1,26 @@
+{
+  "machine_type": "Industrial_Chiller",
+  "target": "Failure_Within_7_Days",
+  "features": [
+    "Installation_Year",
+    "Operational_Hours",
+    "Temperature_C",
+    "Vibration_mms",
+    "Sound_dB",
+    "Oil_Level_pct",
+    "Coolant_Level_pct",
+    "Power_Consumption_kW",
+    "Last_Maintenance_Days_Ago",
+    "Maintenance_History_Count",
+    "Failure_History_Count",
+    "AI_Supervision",
+    "Error_Codes_Last_30_Days",
+    "AI_Override_Events",
+    "Coolant_Flow_L_min"
+  ],
+  "machine_specific_sensor": "Coolant_Flow_L_min",
+  "excluded": "Remaining_Useful_Life_days, Machine_ID",
+  "training_rows": 15270,
+  "accuracy": 0.9417157825802227,
+  "roc_auc": 0.9848995186820821
+}

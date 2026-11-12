@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: forgesafe-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn --chdir Construction-Site-Safety-PPE-Detection-main inference_api:app --bind 0.0.0.0:$PORT --workers 1 --threads 2 --timeout 300

@@ -1,0 +1,26 @@
+{
+  "machine_type": "Furnace",
+  "target": "Failure_Within_7_Days",
+  "features": [
+    "Installation_Year",
+    "Operational_Hours",
+    "Temperature_C",
+    "Vibration_mms",
+    "Sound_dB",
+    "Oil_Level_pct",
+    "Coolant_Level_pct",
+    "Power_Consumption_kW",
+    "Last_Maintenance_Days_Ago",
+    "Maintenance_History_Count",
+    "Failure_History_Count",
+    "AI_Supervision",
+    "Error_Codes_Last_30_Days",
+    "AI_Override_Events",
+    "Heat_Index"
+  ],
+  "machine_specific_sensor": "Heat_Index",
+  "excluded": "Remaining_Useful_Life_days, Machine_ID",
+  "training_rows": 15027,
+  "accuracy": 0.9364604125083167,
+  "roc_auc": 0.9821676883971292
+}

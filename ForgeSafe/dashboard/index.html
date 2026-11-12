@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0d1b2a">
+    <title>Agentic Safety</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="app-shell">
+        <aside class="sidebar" aria-label="Primary navigation">
+            <div class="brand">
+                <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+                <div><strong>Industrial<span>Safety</span></strong><small>Monitoring</small></div>
+            </div>
+
+            <div class="sidebar-label">Views</div>
+            <nav class="nav-list">
+                <button class="nav-item active" data-view="overview"><span
+                        class="nav-icon grid-icon"></span>Overview</button>
+                <button class="nav-item" data-view="machines"><span class="nav-icon pulse-icon"></span>Machines &
+                    Sensors</button>
+                <button class="nav-item" data-view="cctv"><span class="nav-icon camera-icon"></span>CCTV &
+                    Vision</button>
+                <button class="nav-item" data-view="incidents"><span class="nav-icon history-icon"></span>Incident
+                    Log</button>
+            </nav>
+
+            <div class="sidebar-label">Live Queue</div>
+            <nav class="nav-list">
+                <button class="nav-item" data-view="alerts"><span class="nav-icon alert-icon"></span>Alerts <b
+                        class="nav-count">0</b></button>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="user-block">
+                    <div class="avatar">AR</div>
+                    <div><strong>Alex Rivera</strong><small>Safety Supervisor</small></div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <button class="mobile-menu" aria-label="Open navigation">☰</button>
+                <div class="breadcrumbs">
+                    <strong id="breadcrumb-view">Overview</strong>
+                </div>
+
+                <div class="top-actions">
+                    <div class="system-state"><span class="status-dot"></span><span id="top-agent-badge">5 Agents
+                            Active</span></div>
+                    <button class="outline-button compact" id="refresh-button">↻ Refresh</button>
+                </div>
+            </header>
+
+            <div class="content-wrap">
+                <!-- VIEW 1: OVERVIEW -->
+                <div class="view-panel active" id="view-overview">
+                    <section class="metric-grid">
+                        <article class="metric-card accent-teal">
+                            <div class="metric-top"><span class="metric-label">Machines Online</span><span
+                                    class="metric-icon">⌁</span></div>
+                            <div class="metric-value" id="machines-online">-- <small>/ 6</small></div>
+                            <div class="metric-foot"><span class="trend up">6 Models</span><span>live</span>
+                            </div>
+                        </article>
+                        <article class="metric-card accent-amber">
+                            <div class="metric-top"><span class="metric-label">Attention Alerts</span><span
+                                    class="metric-icon">!</span></div>
+                            <div class="metric-value" id="machine-alerts">00</div>
+                            <div class="metric-foot"><span class="trend down" id="critical-alert-count">0
+                                    critical</span><span>active queue</span></div>
+                        </article>
+                        <article class="metric-card accent-blue">
+                            <div class="metric-top"><span class="metric-label">Autonomous Agents</span><span
+                                    class="metric-icon">◈</span></div>
+                            <div class="metric-value">5 <small>active</small></div>
+                            <div class="metric-foot"><span class="trend up">Loop synced</span><span
+                                    id="overview-decision-count">0 decisions</span></div>
+                        </article>
+                        <article class="metric-card accent-coral">
+                            <div class="metric-top"><span class="metric-label">Safety SOPs (RAG)</span><span
+                                    class="metric-icon">◆</span></div>
+                            <div class="metric-value" id="sops-indexed">7 <small>SOPs</small></div>
+                            <div class="metric-foot"><span class="trend up">OSHA / ISO</span><span>active in
+                                    alerts</span></div>
+                        </article>
+                    </section>
+
+                    <!-- Compact Agent Pipeline Strip (Overview) -->
+                    <section class="agent-strip">
+                        <div class="agent-strip-label"><span>AGENTIC FLOW</span></div>
+                        <div class="agent-strip-items">
+                            <div class="agent-pill">
+                                <span class="pill-dot"></span>
+                                <strong>Safety Agent</strong>
+                                <small id="pill-safety-count">0 hazards</small>
+                            </div>
+                            <span class="strip-arrow">→</span>
+                            <div class="agent-pill">
+                                <span class="pill-dot"></span>
+                                <strong>Machine Agent</strong>
+                                <small id="pill-machine-count">0 anomalies</small>
+                            </div>
+                            <span class="strip-arrow">→</span>
+                            <div class="agent-pill supervisor">
+                                <span class="pill-dot"></span>
+                                <strong>Supervisor Agent</strong>
+                                <small id="pill-supervisor-count">0 decisions</small>
+                            </div>
+                            <span class="strip-arrow">↕</span>
+                            <div class="agent-pill rag">
+                                <span class="pill-dot"></span>
+                                <strong>RAG Agent</strong>
+                                <small id="pill-rag-count">7 SOPs</small>
+                            </div>
+                            <span class="strip-arrow">→</span>
+                            <div class="agent-pill action">
+                                <span class="pill-dot"></span>
+                                <strong>Action Agent</strong>
+                                <small id="pill-action-count">Ready</small>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+
+                <!-- VIEW 2: MACHINES & SENSORS -->
+                <div class="view-panel" id="view-machines">
+                    <div class="panel-header">
+                        <div>
+                            <h2>Machine Predictive Maintenance</h2>
+                        </div>
+                        <div class="machine-controls">
+                            <div class="feed-selector" role="tablist">
+                                <button class="feed-option active" data-machine-feed="normal">Normal Stream</button>
+                                <button class="feed-option" data-machine-feed="faulty">Faulty Demo</button>
+                            </div>
+                            <div class="filter-tabs">
+                                <button class="filter-tab active" data-filter="all">All <span>6</span></button>
+                                <button class="filter-tab" data-filter="operational">Nominal <span>0</span></button>
+                                <button class="filter-tab" data-filter="attention">Attention <span>0</span></button>
+                                <button class="filter-tab" data-filter="overridden">Controlled <span>0</span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="stream-live" id="machine-stream-state">Connecting...</span>
+                    <div class="machine-grid full-grid" id="machine-grid-full"></div>
+                </div>
+
+                <!-- VIEW 3: CCTV & VISION -->
+                <div class="view-panel" id="view-cctv">
+                    <div class="panel-header">
+                        <div>
+                            <h2>CCTV & Safety Hazard Detection</h2>
+                        </div>
+                    </div>
+                    <div class="cctv-layout">
+                        <div class="camera-feed">
+                            <div class="feed-top">
+                                <span class="recording" id="feed-state"><i></i> READY</span>
+                                <span id="feed-camera-label">ZONE B · MACHINING CELL</span>
+                                <span class="feed-time" id="feed-time">--:--:--</span>
+                            </div>
+                            <div class="feed-scene">
+                                <video id="camera-video" autoplay muted playsinline></video>
+                                <canvas id="detection-canvas"></canvas>
+                                <div class="feed-placeholder" id="feed-placeholder">
+                                    <strong>Camera Feed Standby</strong>
+                                    <span>Click Start to begin real-time PPE detection</span>
+                                </div>
+                                <div class="scan-line"></div>
+                            </div>
+                            <div class="feed-bottom">
+                                <span id="feed-resolution">-- <i></i> standby</span>
+                                <span class="privacy">◉ Model: <strong id="model-state">connecting...</strong></span>
+                            </div>
+                            <div class="feed-controls">
+                                <button class="solid-button" id="start-camera">▶ Start </button>
+                                <button class="outline-button compact" id="stop-camera" disabled>■ Stop</button>
+                                <span class="inference-status" id="inference-status">Safety Agent ready</span>
+                            </div>
+                        </div>
+
+                        <div class="inspection-panel">
+                            <div class="inspection-copy">
+                                <h3>File Inspection</h3>
+                                <p>Upload an image or MP4 video to run the detection model and review bounding box
+                                    evidence.</p>
+                            </div>
+                            <label class="file-button" for="inspection-file">Upload Image or Video
+                                <span>↑</span></label>
+                            <input id="inspection-file" type="file" accept="image/*,video/*" hidden>
+                            <div class="inspection-result" id="inspection-result">
+                                <span class="result-icon">⌁</span><span>No file selected</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIEW 4: INCIDENT LOG -->
+                <div class="view-panel" id="view-incidents">
+                    <div class="panel-header">
+                        <div>
+                            <h2>Incident History & Decision Log</h2>
+                            <span class="sub-label">Autonomous agent audit trail with retrieved SOP citations</span>
+                        </div>
+                        <span class="alert-summary" id="incident-summary">0 records</span>
+                    </div>
+                    <div class="incident-table-wrap">
+                        <table class="incident-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Time</th>
+                                    <th>Source</th>
+                                    <th>Severity</th>
+                                    <th>Event Details</th>
+                                    <th>AI Decision & Governing SOP</th>
+                                    <th>Status / Control</th>
+                                </tr>
+                            </thead>
+                            <tbody id="incident-table-body">
+                                <tr>
+                                    <td colspan="7" class="table-empty">No incidents logged.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- VIEW 5: ALERTS -->
+                <div class="view-panel" id="view-alerts">
+                    <div class="panel-header">
+                        <div>
+                            <h2>Active Attention Queue</h2>
+                            <span class="sub-label">Prioritized safety and telemetry escalations with governing
+                                SOPs</span>
+                        </div>
+                    </div>
+                    <div class="alerts-list" id="alerts-list-full"></div>
+                </div>
+
+                <footer class="footer">
+                    <span>Industrial Safety Monitoring · Agentic AI System</span>
+                    <span>Sync: <strong id="footer-sync">--:--:--</strong> <i class="sync-dot"></i></span>
+                </footer>
+            </div>
+        </main>
+    </div>
+
+    <div class="toast" id="toast" role="status">Notification</div>
+
+    <!-- Media Inspection Modal -->
+    <div class="inspection-modal" id="inspection-modal" hidden role="dialog" aria-modal="true">
+        <div class="inspection-modal-backdrop" data-close-inspection></div>
+        <div class="inspection-modal-card">
+            <div class="inspection-modal-head">
+                <div>
+                    <span class="section-kicker">Visual Inspection</span>
+                    <h2 id="inspection-modal-title">Detection Result</h2>
+                </div>
+                <button class="modal-close" type="button" data-close-inspection>×</button>
+            </div>
+            <div id="inspection-modal-media"></div>
+            <div class="inspection-modal-foot">
+                <span id="inspection-modal-summary"></span>
+                <a id="inspection-download" class="text-button" download="detection.jpg">Download
+                    <span>↓</span></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- SOP Modal Viewer (Accessible on-demand from alerts/incidents) -->
+    <div class="inspection-modal" id="sop-modal" hidden role="dialog" aria-modal="true">
+        <div class="inspection-modal-backdrop" data-close-sop></div>
+        <div class="inspection-modal-card">
+            <div class="inspection-modal-head">
+                <div>
+                    <span class="section-kicker" id="sop-modal-standard">Standard Operating Procedure</span>
+                    <h2 id="sop-modal-title">Procedure Details</h2>
+                </div>
+                <button class="modal-close" type="button" data-close-sop>×</button>
+            </div>
+            <div class="sop-modal-body" id="sop-modal-body"></div>
+            <div class="inspection-modal-foot">
+                <span id="sop-modal-source"></span>
+                <button class="outline-button compact" type="button" data-close-sop>Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
