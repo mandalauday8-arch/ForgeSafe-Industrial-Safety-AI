@@ -12,11 +12,12 @@ import imageio_ffmpeg
 import numpy as np
 import pandas as pd
 from catboost import CatBoostClassifier
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 from ultralytics import YOLO
 
 ROOT = Path(__file__).resolve().parent
 PROJECT_ROOT = ROOT.parent
+DASHBOARD_DIR = PROJECT_ROOT / "dashboard"
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
@@ -83,7 +84,14 @@ sensor_labels = {
     "Heat_Index": ("Heat index", "", 2),
 }
 app = Flask(__name__)
+@app.get("/")
+def dashboard():
+    return send_from_directory(DASHBOARD_DIR, "index.html")
 
+
+@app.get("/<path:filename>")
+def dashboard_files(filename):
+    return send_from_directory(DASHBOARD_DIR, filename)
 
 @app.after_request
 def add_cors_headers(response):
